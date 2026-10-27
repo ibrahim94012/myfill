@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1d6fe8">
+<title>PassVault</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsQR/1.4.0/jsQR.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef5ff;--card:#fff;--p:#1d6fe8;--p2:#0b4fb8;--p3:#4a9bff;--tx:#13294b;--mut:#6b7f9e;--bd:#d9e6fb;--err:#d93a3a;--ok:#1a9d5c}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;color:var(--tx);font-family:"Hind Siliguri","Noto Sans Bengali",system-ui,-apple-system,sans-serif}
+body{background:linear-gradient(180deg,#d6e8ff 0,#eef5ff 260px,#f6faff 100%) fixed;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+.wrap{max-width:460px;margin:0 auto;padding:20px 16px 48px}
+.logo{text-align:center;margin:8px 0 22px}
+.logo .lg{width:68px;height:68px;margin:0 auto 10px;border-radius:22px;background:linear-gradient(135deg,var(--p3),var(--p2));display:grid;place-items:center;color:#fff;font-size:30px;box-shadow:0 12px 28px rgba(29,111,232,.35)}
+.logo h1{margin:0;font-size:24px;font-weight:700;letter-spacing:.3px}
+.logo p{margin:2px 0 0;font-size:13px;color:var(--mut)}
+section:not(.hide){animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:24px;padding:22px 20px;box-shadow:0 14px 34px rgba(29,111,232,.12);margin-bottom:14px}
+h2{margin:0 0 6px;font-size:19px;font-weight:700}
+p.s{margin:0 0 14px;color:var(--mut);font-size:14px;line-height:1.55}
+label{display:block;font-size:13px;font-weight:500;color:var(--mut);margin:14px 0 6px}
+.field{position:relative}
+.field>svg,.field>i{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--p);font-size:15px;pointer-events:none}
+input{width:100%;padding:14px 14px;border:1.5px solid var(--bd);border-radius:14px;font:inherit;font-size:16px;background:#f7faff;color:var(--tx);outline:none;transition:.2s}
+.field input{padding-left:44px}
+input:focus{border-color:var(--p);background:#fff;box-shadow:0 0 0 4px rgba(29,111,232,.12)}
+input.pin{text-align:center;font-size:28px;letter-spacing:12px;padding:16px}
+button{font:inherit;cursor:pointer;border:0;border-radius:14px;padding:14px 16px;font-size:15.5px;font-weight:600;background:linear-gradient(135deg,var(--p3),var(--p));color:#fff;width:100%;margin-top:14px;box-shadow:0 8px 18px rgba(29,111,232,.28);transition:.15s}
+button:active{transform:scale(.98)}
+button.g{background:#e6f0ff;color:var(--p2);box-shadow:none}
+button.d{background:#fdecec;color:var(--err);box-shadow:none}
+button i,button .svg-inline--fa{margin-right:8px}
+.err{color:var(--err);font-size:14px;margin-top:10px;min-height:18px;text-align:center}
+.steps{display:flex;justify-content:center;gap:34px;margin:4px 0 20px}
+.steps span{position:relative;width:40px;height:40px;border-radius:50%;background:#dbe8ff;color:var(--p2);display:grid;place-items:center;font-size:15px}
+.steps span:not(:last-child)::after{content:"";position:absolute;left:100%;top:50%;width:34px;height:2px;background:#cfe0fb}
+.steps span.on{background:linear-gradient(135deg,var(--p3),var(--p2));color:#fff;box-shadow:0 6px 14px rgba(29,111,232,.35)}
+.steps span.on:not(:last-child)::after{background:var(--p)}
+.qr{text-align:center;padding:14px;background:#fff;border:2px dashed var(--p3);border-radius:20px}
+.qr img{width:100%;max-width:240px;image-rendering:pixelated}
+video{width:100%;border-radius:18px;background:#000;max-height:300px;object-fit:cover;margin-bottom:4px;box-shadow:0 0 0 3px var(--p3)}
+.warn{background:#fff6dc;border:1px solid #f3dc92;color:#7a5b00;border-radius:14px;padding:11px 13px;font-size:13px;line-height:1.55;margin-top:14px}
+.fp{width:120px;height:120px;margin:8px auto 14px;border-radius:50%;background:linear-gradient(135deg,#e6f0ff,#cfe3ff);display:grid;place-items:center;color:var(--p);font-size:58px;position:relative}
+.fp::before,.fp::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--p3);animation:pulse 2s infinite}
+.fp::after{animation-delay:1s}
+@keyframes pulse{from{transform:scale(1);opacity:.7}to{transform:scale(1.5);opacity:0}}
+.hero{display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,var(--p3),var(--p2));color:#fff;border-radius:24px;padding:16px;box-shadow:0 14px 30px rgba(29,111,232,.32);margin-bottom:14px}
+.av{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.22);display:grid;place-items:center;font-size:20px;font-weight:700;flex:none}
+.hero b{display:block;font-size:17px}
+.hero small{font-size:12.5px;opacity:.9}
+.hero .lk{width:auto;margin:0 0 0 auto;padding:10px 14px;background:rgba(255,255,255,.2);box-shadow:none;color:#fff;border-radius:12px;font-size:14px}
+.chip{display:inline-block;background:#fff;color:var(--p2);font-weight:700;border-radius:20px;padding:2px 10px;margin-left:6px;font-size:13px}
+.row{display:flex;align-items:center;gap:12px}
+.ic{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#e6f0ff,#d3e5ff);color:var(--p);display:grid;place-items:center;font-size:22px;flex:none}
+.it{padding:14px;border:1px solid var(--bd);border-radius:20px;margin-bottom:12px;background:#fff;box-shadow:0 6px 16px rgba(29,111,232,.07)}
+.it b{font-size:16px}
+.it small{display:block;color:var(--mut);font-size:13.5px;margin-top:3px;word-break:break-all}
+.it small svg{color:var(--p3);margin-right:6px;width:13px}
+.acts{display:flex;gap:8px;margin-top:12px}
+.acts button{margin:0;padding:10px;font-size:14px;flex:1;width:auto}
+.acts button svg{margin:0}
+.fab{position:fixed;right:max(18px,calc(50% - 212px));bottom:calc(20px + env(safe-area-inset-bottom,0px));width:60px;height:60px;border-radius:50%;padding:0;margin:0;font-size:24px;display:grid;place-items:center;box-shadow:0 12px 26px rgba(29,111,232,.45);z-index:5}
+.fab svg{margin:0}
+.foot{text-align:center;color:var(--mut);font-size:12.5px;margin-top:18px}
+.hide{display:none!important}
+a{text-decoration:none}
+#list{padding-bottom:84px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="logo"><div class="lg"><i class="fa-solid fa-shield-halved"></i></div><h1>PassVault</h1><p>আপনার পাসওয়ার্ডের নিরাপদ ভল্ট</p></div>
+
+<section id="v-setup" class="hide">
+ <div class="card">
+  <h2>নতুন অ্যাকাউন্ট খুলুন</h2>
+  <p class="s">আপনার ডেটা এনক্রিপ্ট হয়ে ক্লাউডে থাকবে, তাই যেকোনো ফোন থেকে খোলা যাবে।</p>
+  <label>আপনার নাম</label><div class="field"><i class="fa-solid fa-user"></i><input id="s-name" placeholder="নাম লিখুন"></div>
+  <label>PIN (৪–৬ সংখ্যা)</label><div class="field"><i class="fa-solid fa-key"></i><input id="s-pin" type="password" inputmode="numeric" maxlength="6" placeholder="••••"></div>
+  <label>PIN আবার দিন</label><div class="field"><i class="fa-solid fa-check-double"></i><input id="s-pin2" type="password" inputmode="numeric" maxlength="6" placeholder="••••"></div>
+  <button onclick="doSetup()"><i class="fa-solid fa-qrcode"></i>অ্যাকাউন্ট ও QR তৈরি করুন</button>
+  <button class="g" onclick="startLogin()"><i class="fa-solid fa-right-to-bracket"></i>আমার QR আছে, লগইন করব</button>
+  <div class="err" id="s-err"></div>
+ </div>
+</section>
+
+<section id="v-qr" class="hide">
+ <div class="card">
+  <h2><i class="fa-solid fa-circle-check" style="color:var(--ok)"></i> অ্যাকাউন্ট তৈরি হয়েছে</h2>
+  <p class="s">এই QR টাই আপনার লগইন চাবি। সেভ করে নিরাপদ জায়গায় রাখুন।</p>
+  <div class="qr"><img id="qr-img" alt="QR"></div>
+  <a id="qr-dl" download="passvault-qr.gif"><button class="g"><i class="fa-solid fa-download"></i>QR ডাউনলোড করুন</button></a>
+  <div class="warn"><i class="fa-solid fa-triangle-exclamation"></i> QR হারালে ভল্ট খোলা যাবে না। QR ও PIN দুটোই কারও সাথে শেয়ার করবেন না।</div>
+  <button onclick="startLogin()"><i class="fa-solid fa-right-to-bracket"></i>লগইনে যান</button>
+ </div>
+</section>
+
+<section id="v-scan" class="hide">
+ <div class="steps"><span class="on"><i class="fa-solid fa-qrcode"></i></span><span><i class="fa-solid fa-key"></i></span><span><i class="fa-solid fa-fingerprint"></i></span></div>
+ <div class="card">
+  <h2>ধাপ ১: QR স্ক্যান করুন</h2>
+  <p class="s">ক্যামেরা আপনার QR এর দিকে ধরুন।</p>
+  <video id="cam" playsinline muted class="hide"></video>
+  <button id="cam-btn" onclick="startCam()"><i class="fa-solid fa-camera"></i>ক্যামেরা চালু করুন</button>
+  <input type="file" id="qr-file" accept="image/*" class="hide" onchange="fileQR(this)">
+  <button class="g" onclick="$('qr-file').click()"><i class="fa-solid fa-image"></i>ছবি থেকে QR দিন</button>
+  <div class="err" id="sc-err"></div>
+  <button class="g" onclick="stopCam();show('v-setup')"><i class="fa-solid fa-user-plus"></i>নতুন অ্যাকাউন্ট খুলুন</button>
+ </div>
+</section>
+
+<section id="v-pin" class="hide">
+ <div class="steps"><span class="on"><i class="fa-solid fa-check"></i></span><span class="on"><i class="fa-solid fa-key"></i></span><span><i class="fa-solid fa-fingerprint"></i></span></div>
+ <div class="card">
+  <h2>ধাপ ২: PIN দিন</h2>
+  <p class="s">QR সফল হয়েছে। এবার আপনার গোপন PIN দিন।</p>
+  <input id="l-pin" class="pin" type="password" inputmode="numeric" maxlength="6" placeholder="••••">
+  <button onclick="doPin()"><i class="fa-solid fa-arrow-right"></i>পরের ধাপ</button>
+  <div class="err" id="p-err"></div>
+ </div>
+</section>
+
+<section id="v-bio" class="hide">
+ <div class="steps"><span class="on"><i class="fa-solid fa-check"></i></span><span class="on"><i class="fa-solid fa-check"></i></span><span class="on"><i class="fa-solid fa-fingerprint"></i></span></div>
+ <div class="card" style="text-align:center">
+  <h2>ধাপ ৩: ফিঙ্গারপ্রিন্ট</h2>
+  <p class="s" id="bio-txt">ফোনের ফিঙ্গারপ্রিন্ট/ফেস আনলক দিয়ে নিশ্চিত করুন।</p>
+  <div class="fp"><i class="fa-solid fa-fingerprint"></i></div>
+  <button onclick="doBio()"><i class="fa-solid fa-lock-open"></i>ভেরিফাই করুন</button>
+  <div class="err" id="b-err"></div>
+ </div>
+</section>
+
+<section id="v-vault" class="hide">
+ <div class="hero"><div class="av" id="av"></div><div><b id="hello"></b><small><i class="fa-solid fa-cloud"></i> ক্লাউডে সিঙ্ক · সংরক্ষিত<span class="chip" id="cnt">0</span></small></div><button class="lk" onclick="lock()"><i class="fa-solid fa-lock"></i>লক</button></div>
+ <div class="field" style="margin-bottom:14px"><i class="fa-solid fa-magnifying-glass"></i><input id="q" placeholder="অ্যাকাউন্ট খুঁজুন..." oninput="render()"></div>
+ <div id="list"></div>
+ <button class="fab" onclick="openForm()" aria-label="নতুন"><i class="fa-solid fa-plus"></i></button>
+</section>
+
+<section id="v-form" class="hide">
+ <div class="card">
+  <h2>অ্যাকাউন্ট সংরক্ষণ</h2>
+  <label>প্ল্যাটফর্ম</label><div class="field"><i class="fa-solid fa-globe"></i><input id="f-pl" list="pls" placeholder="Facebook, Instagram, Gmail..."></div>
+  <datalist id="pls"><option>Facebook<option>Instagram<option>Gmail<option>X (Twitter)<option>WhatsApp<option>LinkedIn<option>TikTok<option>YouTube<option>Telegram<option>GitHub</datalist>
+  <label>ইউজারনেম</label><div class="field"><i class="fa-solid fa-user"></i><input id="f-us"></div>
+  <label>মোবাইল</label><div class="field"><i class="fa-solid fa-phone"></i><input id="f-mo" type="tel"></div>
+  <label>ইমেইল</label><div class="field"><i class="fa-solid fa-envelope"></i><input id="f-em" type="email"></div>
+  <label>পাসওয়ার্ড</label><div class="field"><i class="fa-solid fa-key"></i><input id="f-pw" type="text" autocomplete="off"></div>
+  <button class="g" onclick="genPw()"><i class="fa-solid fa-wand-magic-sparkles"></i>শক্তিশালী পাসওয়ার্ড বানান</button>
+  <button onclick="saveEntry()"><i class="fa-solid fa-floppy-disk"></i>সংরক্ষণ করুন</button>
+  <button class="g" onclick="show('v-vault')">বাতিল</button>
+  <div class="err" id="f-err"></div>
+ </div>
+</section>
+<div class="foot"><i class="fa-solid fa-lock"></i> এন্ড-টু-এন্ড এনক্রিপ্টেড · শুধু আপনিই পড়তে পারবেন</div>
+</div>
+
+<script>
+/* ======= এখানে আপনার Firebase কনফিগ বসান (Project settings → Your apps → Web app) ======= */
+var firebaseConfig = {
+  apiKey: "AIzaSyC8vQ1Cr4bmL7WyIAyydEtQ0SwtaBWK7RM",
+  authDomain: "myfill.firebaseapp.com",
+  databaseURL: "https://myfill-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "myfill",
+  storageBucket: "myfill.firebasestorage.app",
+  messagingSenderId: "262073345101",
+  appId: "1:262073345101:web:fe2bb063fa24fa5d08a804",
+  measurementId: "G-MJT1WNK9DY"
+};
+/* ============================================================================ */
+
+var $=function(i){return document.getElementById(i)};
+var LS='passvault_v2',db=null;
+var CONFIGURED=firebaseConfig.apiKey&&firebaseConfig.apiKey.indexOf('YOUR')<0;
+if(CONFIGURED){firebase.initializeApp(firebaseConfig);db=firebase.database()}
+var K=null,SECRET=null,ID=null,META=null,DATA=[],stream=null,timer=null,editId=null,lastCt=null,REF=null;
+var enc=new TextEncoder(),dec=new TextDecoder();
+function b64(buf){var a=new Uint8Array(buf),s='';for(var i=0;i<a.length;i++)s+=String.fromCharCode(a[i]);return btoa(s)}
+function unb64(s){var b=atob(s),a=new Uint8Array(b.length);for(var i=0;i<b.length;i++)a[i]=b.charCodeAt(i);return a}
+function esc(s){return String(s||'').replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function show(id){['v-setup','v-qr','v-scan','v-pin','v-bio','v-vault','v-form'].forEach(function(v){$(v).classList.toggle('hide',v!==id)});window.scrollTo(0,0)}
+function loc(){try{return JSON.parse(localStorage.getItem(LS))||{creds:{}}}catch(e){return{creds:{}}}}
+function setCred(id,c){var o=loc();o.creds[id]=c;try{localStorage.setItem(LS,JSON.stringify(o))}catch(e){}}
+async function idOf(secret){var h=await crypto.subtle.digest('SHA-256',enc.encode('id:'+secret));return Array.from(new Uint8Array(h)).map(function(b){return b.toString(16).padStart(2,'0')}).join('')}
+async function deriveKey(secret,pin,salt){
+  var km=await crypto.subtle.importKey('raw',enc.encode(secret+':'+pin),'PBKDF2',false,['deriveKey']);
+  return crypto.subtle.deriveKey({name:'PBKDF2',salt:salt,iterations:250000,hash:'SHA-256'},km,{name:'AES-GCM',length:256},false,['encrypt','decrypt']);
+}
+async function persist(){
+  var iv=crypto.getRandomValues(new Uint8Array(12));
+  var ct=b64(await crypto.subtle.encrypt({name:'AES-GCM',iv:iv},K,enc.encode(JSON.stringify(DATA))));
+  lastCt=ct;
+  await db.ref('vaults/'+ID).update({name:META.name,salt:META.salt,iv:b64(iv),ct:ct});
+}
+async function regCred(name){
+  var c=await navigator.credentials.create({publicKey:{challenge:crypto.getRandomValues(new Uint8Array(32)),rp:{name:'PassVault'},user:{id:crypto.getRandomValues(new Uint8Array(16)),name:name,displayName:name},pubKeyCredParams:[{type:'public-key',alg:-7},{type:'public-key',alg:-257}],authenticatorSelection:{authenticatorAttachment:'platform',userVerification:'required'},timeout:60000}});
+  return b64(c.rawId);
+}
+/* ---------- Setup ---------- */
+async function doSetup(){
+  var n=$('s-name').value.trim(),p=$('s-pin').value,p2=$('s-pin2').value,e=$('s-err');
+  e.textContent='';
+  if(!CONFIGURED){e.textContent='প্রথমে index.html এ Firebase কনফিগ বসান';return}
+  if(!n){e.textContent='নাম দিন';return}
+  if(!/^\d{4,6}$/.test(p)){e.textContent='PIN ৪–৬ সংখ্যার হতে হবে';return}
+  if(p!==p2){e.textContent='দুটি PIN মিলছে না';return}
+  if(!window.crypto||!crypto.subtle){e.textContent='এই ব্রাউজারে নিরাপদ এনক্রিপশন সাপোর্ট নেই (HTTPS লাগবে)';return}
+  e.textContent='অপেক্ষা করুন...';
+  var secret,salt,cred;
+  try{cred=await regCred(n)}catch(x){e.textContent='ফিঙ্গারপ্রিন্ট সেটআপ হয়নি। ফোনে স্ক্রিন লক/ফিঙ্গারপ্রিন্ট চালু করে আবার চেষ্টা করুন।';return}
+  try{
+    secret=b64(crypto.getRandomValues(new Uint8Array(32)));
+    salt=crypto.getRandomValues(new Uint8Array(16));
+    ID=await idOf(secret);META={name:n,salt:b64(salt)};
+    K=await deriveKey(secret,p,salt);DATA=[];
+    await persist();
+    setCred(ID,cred);
+    var qr=qrcode(0,'M');qr.addData('PASSVAULT:'+secret);qr.make();
+    var url=qr.createDataURL(8,16);
+    $('qr-img').src=url;$('qr-dl').href=url;
+    K=null;ID=null;META=null;DATA=[];e.textContent='';
+    show('v-qr');
+  }catch(x){e.textContent='Firebase এ সংরক্ষণ হয়নি। ইন্টারনেট ও Database rules চেক করুন।'}
+}
+/* ---------- Login ---------- */
+function startLogin(){SECRET=null;K=null;$('sc-err').textContent='';show('v-scan')}
+async function gotQR(txt){
+  stopCam();
+  if(txt.indexOf('PASSVAULT:')!==0){$('sc-err').textContent='এটি সঠিক QR নয়';return}
+  if(!CONFIGURED){$('sc-err').textContent='Firebase কনফিগ বসানো হয়নি';return}
+  $('sc-err').textContent='অ্যাকাউন্ট খোঁজা হচ্ছে...';
+  try{
+    var s=txt.slice(10),id=await idOf(s);
+    var snap=await db.ref('vaults/'+id).get();
+    if(!snap.exists()){$('sc-err').textContent='এই QR এর কোনো অ্যাকাউন্ট পাওয়া যায়নি';return}
+    SECRET=s;ID=id;META=snap.val();
+    $('sc-err').textContent='';$('l-pin').value='';$('p-err').textContent='';show('v-pin');
+  }catch(x){$('sc-err').textContent='সার্ভারে সংযোগ হয়নি। ইন্টারনেট চেক করুন।'}
+}
+async function startCam(){
+  $('sc-err').textContent='';
+  try{
+    stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}});
+    var v=$('cam');v.srcObject=stream;v.classList.remove('hide');await v.play();$('cam-btn').classList.add('hide');tick();
+  }catch(x){$('sc-err').textContent='ক্যামেরা চালু হয়নি। নিচের ছবি অপশন ব্যবহার করুন।'}
+}
+function tick(){
+  var v=$('cam');if(!stream)return;
+  if(v.readyState===v.HAVE_ENOUGH_DATA){
+    var c=document.createElement('canvas');c.width=v.videoWidth;c.height=v.videoHeight;
+    var x=c.getContext('2d');x.drawImage(v,0,0);
+    var r=jsQR(x.getImageData(0,0,c.width,c.height).data,c.width,c.height);
+    if(r&&r.data.indexOf('PASSVAULT:')===0){gotQR(r.data);return}
+  }
+  requestAnimationFrame(tick);
+}
+function stopCam(){if(stream){stream.getTracks().forEach(function(t){t.stop()});stream=null}$('cam').classList.add('hide');$('cam-btn').classList.remove('hide')}
+function fileQR(inp){
+  var f=inp.files[0];if(!f)return;
+  var img=new Image();
+  img.onload=function(){
+    var c=document.createElement('canvas');c.width=img.width;c.height=img.height;
+    var x=c.getContext('2d');x.drawImage(img,0,0);
+    var r=jsQR(x.getImageData(0,0,c.width,c.height).data,c.width,c.height);
+    if(r)gotQR(r.data);else $('sc-err').textContent='ছবিতে QR পাওয়া যায়নি';
+  };
+  img.src=URL.createObjectURL(f);inp.value='';
+}
+var tries=0;
+async function doPin(){
+  var p=$('l-pin').value,e=$('p-err');e.textContent='';
+  if(!/^\d{4,6}$/.test(p)){e.textContent='সঠিক PIN দিন';return}
+  e.textContent='যাচাই হচ্ছে...';
+  try{
+    var k=await deriveKey(SECRET,p,unb64(META.salt));
+    var pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:unb64(META.iv)},k,unb64(META.ct));
+    K=k;DATA=JSON.parse(dec.decode(pt));lastCt=META.ct;tries=0;e.textContent='';
+    var has=!!loc().creds[ID];
+    $('bio-txt').textContent=has?'ফোনের ফিঙ্গারপ্রিন্ট/ফেস আনলক দিয়ে নিশ্চিত করুন।':'এই ডিভাইসে নতুন, তাই ফিঙ্গারপ্রিন্ট রেজিস্টার করুন।';
+    $('b-err').textContent='';show('v-bio');
+  }catch(x){
+    tries++;e.textContent='ভুল PIN ('+tries+'/5)';
+    if(tries>=5){tries=0;SECRET=null;K=null;show('v-scan')}
+  }
+}
+async function doBio(){
+  var e=$('b-err');e.textContent='';
+  try{
+    var c=loc().creds[ID];
+    if(!c){setCred(ID,await regCred(META.name))}
+    else await navigator.credentials.get({publicKey:{challenge:crypto.getRandomValues(new Uint8Array(32)),allowCredentials:[{type:'public-key',id:unb64(c)}],userVerification:'required',timeout:60000}});
+    $('hello').textContent='স্বাগতম, '+META.name;$('av').textContent=META.name.charAt(0).toUpperCase();
+    $('q').value='';render();show('v-vault');arm();listen();
+  }catch(x){e.textContent='ফিঙ্গারপ্রিন্ট মেলেনি, আবার চেষ্টা করুন'}
+}
+function listen(){
+  REF=db.ref('vaults/'+ID);
+  REF.on('value',async function(s){
+    var v=s.val();if(!v||!K||v.ct===lastCt)return;
+    try{var pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:unb64(v.iv)},K,unb64(v.ct));DATA=JSON.parse(dec.decode(pt));lastCt=v.ct;if(!$('v-vault').classList.contains('hide'))render()}catch(x){}
+  });
+}
+/* ---------- Vault ---------- */
+var ICONS={facebook:'facebook',instagram:'instagram',gmail:'google',google:'google',x:'x-twitter',twitter:'x-twitter',whatsapp:'whatsapp',linkedin:'linkedin',tiktok:'tiktok',youtube:'youtube',telegram:'telegram',github:'github'};
+function icon(n){var k=(n||'').toLowerCase();for(var key in ICONS){if(k.indexOf(key)===0||k.indexOf(key)>-1&&key.length>2)return'<i class="fa-brands fa-'+ICONS[key]+'"></i>'}return'<i class="fa-solid fa-globe"></i>'}
+function render(){var ce=$('cnt');if(ce)ce.textContent=DATA.length;
+  var q=$('q').value.toLowerCase(),h='';
+  DATA.forEach(function(d,i){
+    if(q&&JSON.stringify(d).toLowerCase().indexOf(q)<0)return;
+    h+='<div class="it"><div class="row"><div class="ic">'+icon(d.pl)+'</div><div style="min-width:0"><b>'+esc(d.pl)+'</b>'+
+    (d.us?'<small><i class="fa-solid fa-user"></i> '+esc(d.us)+'</small>':'')+
+    (d.mo?'<small><i class="fa-solid fa-phone"></i> '+esc(d.mo)+'</small>':'')+
+    (d.em?'<small><i class="fa-solid fa-envelope"></i> '+esc(d.em)+'</small>':'')+
+    '<small><i class="fa-solid fa-key"></i> <span id="pw'+i+'">••••••••</span></small></div></div>'+
+    '<div class="acts"><button class="g" onclick="togglePw('+i+')"><i class="fa-solid fa-eye"></i></button>'+
+    '<button class="g" onclick="cp('+i+')"><i class="fa-solid fa-copy"></i></button>'+
+    '<button class="g" onclick="openForm('+i+')"><i class="fa-solid fa-pen"></i></button>'+
+    '<button class="d" onclick="del('+i+')"><i class="fa-solid fa-trash"></i></button></div></div>';
+  });
+  $('list').innerHTML=h||'<div class="card" style="text-align:center;color:var(--mut)"><i class="fa-solid fa-box-open" style="font-size:28px"></i><p class="s" style="margin-top:8px">কিছু সংরক্ষিত নেই</p></div>';
+}
+function togglePw(i){var s=$('pw'+i);s.textContent=s.textContent==='••••••••'?DATA[i].pw:'••••••••'}
+function cp(i){try{navigator.clipboard.writeText(DATA[i].pw)}catch(e){}}
+function openForm(i){
+  editId=(typeof i==='number')?i:null;var d=editId!==null?DATA[editId]:{};
+  $('f-pl').value=d.pl||'';$('f-us').value=d.us||'';$('f-mo').value=d.mo||'';$('f-em').value=d.em||'';$('f-pw').value=d.pw||'';$('f-err').textContent='';
+  show('v-form');
+}
+function genPw(){
+  var cs='abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789!@#$%^&*',a=crypto.getRandomValues(new Uint32Array(18)),s='';
+  for(var i=0;i<18;i++)s+=cs[a[i]%cs.length];$('f-pw').value=s;
+}
+async function saveEntry(){
+  var d={pl:$('f-pl').value.trim(),us:$('f-us').value.trim(),mo:$('f-mo').value.trim(),em:$('f-em').value.trim(),pw:$('f-pw').value};
+  if(!d.pl||!d.pw){$('f-err').textContent='প্ল্যাটফর্ম ও পাসওয়ার্ড দিন';return}
+  if(editId!==null)DATA[editId]=d;else DATA.push(d);
+  try{await persist();render();show('v-vault')}catch(x){$('f-err').textContent='সংরক্ষণ হয়নি, ইন্টারনেট চেক করুন'}
+}
+async function del(i){if(!confirm('মুছে ফেলবেন?'))return;DATA.splice(i,1);try{await persist()}catch(x){}render()}
+function lock(){if(REF){REF.off();REF=null}K=null;SECRET=null;ID=null;META=null;DATA=[];clearTimeout(timer);show('v-scan')}
+function arm(){clearTimeout(timer);timer=setTimeout(lock,120000)}
+['click','keydown','touchstart'].forEach(function(ev){document.addEventListener(ev,function(){if(K)arm()})});
+/* ---------- Init ---------- */
+show(Object.keys(loc().creds).length?'v-scan':'v-setup');
+</script>
+</body>
+</html>
