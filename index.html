@@ -130,6 +130,59 @@ body[data-v=v-vault] #n-home,body[data-v=v-set] #n-set{color:var(--p)}
 #splash svg{font-size:64px}#splash b{font-size:26px;margin-top:12px}
 #splash.out{opacity:0;pointer-events:none}
 @keyframes spl{to{opacity:0;visibility:hidden}}
+.pscr{position:fixed;inset:0;z-index:30;display:flex;flex-direction:column;height:calc(var(--vh,1vh)*100);padding:env(safe-area-inset-top,0px) 18px calc(env(safe-area-inset-bottom,0px) + 10px);background:linear-gradient(180deg,#d6e8ff 0,#eef5ff 45%,#f6faff 100%);overflow:hidden}
+.ptop{display:flex;align-items:center;justify-content:space-between;padding:12px 0;flex:none}
+.pbrand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px}
+.lg2{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--p3),var(--p2));display:grid;place-items:center;color:#fff;font-size:18px;box-shadow:0 6px 14px rgba(29,111,232,.35)}
+.pa{width:auto;margin:0;padding:9px 14px;font-size:14px;box-shadow:none;background:#e6f0ff;color:var(--p2);border-radius:12px}.pa.dg{background:#fdecec;color:var(--err)}
+.pbody{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:space-evenly;align-items:center;width:100%;max-width:340px;margin:0 auto;text-align:center}
+.pbody h2{font-size:clamp(17px,calc(var(--vh,1vh)*2.8),21px);margin:0}
+#v-pad .pad{width:100%;max-width:300px;margin:0;gap:clamp(8px,calc(var(--vh,1vh)*1.5),14px)}
+#v-pad .k{aspect-ratio:auto;height:clamp(44px,calc(var(--vh,1vh)*9),66px);font-size:clamp(20px,calc(var(--vh,1vh)*3.5),28px);border-radius:clamp(14px,calc(var(--vh,1vh)*2.4),20px)}
+#v-pad .dots{margin:0 0 6px}
+.lnk{width:auto;margin:2px auto 0;padding:6px 10px;background:none;box-shadow:none;color:var(--p);font-size:14px}
+body[data-v=v-pad] .logo,body[data-v=v-bio] .logo,body[data-v=v-pad] .foot,body[data-v=v-bio] .foot{display:none}
+body[data-v=v-pad],body[data-v=v-bio]{overflow:hidden}
+.sortb{width:48px;margin:0;padding:0;flex:none;border-radius:14px;box-shadow:none}.sortb svg{margin:0!important}
+.sec{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--bd);border-radius:18px;padding:12px;margin-bottom:12px;cursor:pointer;box-shadow:0 6px 16px rgba(29,111,232,.07)}
+.sec b{display:block;font-size:15px}.sec small{color:var(--mut);font-size:13px}
+.secn{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font-weight:700;color:#fff;flex:none}
+.tag.rk{background:#fdecec;color:var(--err)}
+body[data-v=v-vault] .wrap{padding-bottom:40px}
+#toast{z-index:60;bottom:calc(24px + env(safe-area-inset-bottom,0px))}
+body.sheet-open{overflow:hidden}
+.sbg{position:fixed;inset:0;z-index:35;background:rgba(19,41,75,.5);opacity:0;pointer-events:none;transition:opacity .3s;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
+.sbg.on{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:40;max-width:520px;margin:0 auto;background:#f4f8ff;border-radius:28px 28px 0 0;box-shadow:0 -16px 50px rgba(19,41,75,.28);max-height:calc(var(--vh,1vh)*92 - env(safe-area-inset-top,0px));overflow-y:auto;overscroll-behavior:contain;transform:translateY(105%);visibility:hidden;transition:transform .38s cubic-bezier(.22,.9,.3,1),visibility 0s .38s;animation:none!important;padding-bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+.sheet.open{transform:none;visibility:visible;transition:transform .38s cubic-bezier(.22,.9,.3,1),visibility 0s}
+.sheet input,.sheet select,.sheet textarea{background:#fff}
+.sheet .card{border:0;box-shadow:none;background:transparent;padding:4px 18px 10px;margin:0}
+.sh-head{position:sticky;top:0;z-index:3;background:#f4f8ff;padding:8px 18px 8px;border-radius:28px 28px 0 0}
+.grab{width:44px;height:5px;border-radius:3px;background:#c9d9f2;margin:2px auto 10px}
+.sh-row{display:flex;align-items:center;justify-content:space-between}
+.sh-row b{font-size:18px}.sh-row b svg{color:var(--p);margin-right:6px}
+.sh-x{width:36px;height:36px;margin:0;padding:0;border-radius:50%;background:#e3ecfb;color:var(--p2);box-shadow:none;display:grid;place-items:center}.sh-x svg{margin:0!important}
+.sbody{padding:2px 16px 8px}
+.prof{display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,var(--p3),var(--p2));color:#fff;border-radius:20px;padding:14px;box-shadow:0 10px 24px rgba(29,111,232,.3)}
+.prof b{display:block;font-size:16px}.prof small{opacity:.9;font-size:13px}
+.okb{margin-left:auto;background:rgba(255,255,255,.22);border-radius:14px;padding:4px 10px;font-size:12px;white-space:nowrap}.okb svg{margin-right:4px}
+.sgl{font-size:12.5px;font-weight:700;color:var(--mut);letter-spacing:.4px;margin:18px 6px 8px}
+.slist{background:#fff;border:1px solid var(--bd);border-radius:18px;overflow:hidden}
+.srow{display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid #edf3fd}
+.srow:last-child{border-bottom:0}
+.srow.tap{cursor:pointer}.srow.tap:active{background:#f3f8ff}
+.srow.col{flex-direction:column;align-items:stretch;gap:10px}
+.stt{display:flex;align-items:center;gap:12px}
+.sic{width:36px;height:36px;border-radius:11px;background:#e6f0ff;color:var(--p);display:grid;place-items:center;flex:none;font-size:16px}
+.st{flex:1;min-width:0}.st b,.stt b{display:block;font-size:15px;font-weight:600}.st small,.stt small{display:block;color:var(--mut);font-size:12.5px;line-height:1.35}
+.chev{color:#b3c4e0;font-size:13px;margin:0!important}
+.ss{width:auto;max-width:150px;padding:8px 10px;font-size:14px;border-radius:12px}
+.tg{width:50px;height:30px;border-radius:16px;margin:0;padding:0;background:#cfdcf3;box-shadow:none;position:relative;flex:none;transition:.2s}
+.tg::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 2px 5px rgba(0,0,0,.25)}
+.tg.on,.tg.on:active{background:var(--p)}.tg.on::after{left:23px}
+.srow.red .sic{background:#fdecec;color:var(--err)}.srow.red b{color:var(--err)}
+.pd{padding:12px 14px}.pd button{margin-top:10px}
+.pd .warn{margin-top:12px}
 </style>
 </head>
 <body>
@@ -162,13 +215,14 @@ body[data-v=v-vault] #n-home,body[data-v=v-set] #n-set{color:var(--p)}
  <div class="err" id="m-err"></div>
 </div></section>
 
-<section id="v-pad" class="hide"><div class="card" style="text-align:center">
- <h2 id="pad-t"></h2><p class="s" id="pad-s"></p>
- <div class="dots" id="dots"><span></span><span></span><span></span><span></span><span></span><span></span></div>
- <div class="err" id="pad-e"></div>
- <div class="pad" id="keys"></div>
- <div id="pad-login"><button class="g" onclick="forgot()"><i class="fa-solid fa-circle-question"></i>PIN ভুলে গেছেন?</button><button class="d" onclick="switchAcct()"><i class="fa-solid fa-right-from-bracket"></i>অন্য অ্যাকাউন্ট</button></div>
-</div></section>
+<section id="v-pad" class="hide pscr">
+ <div class="ptop"><div class="pbrand"><div class="lg2"><i class="fa-solid fa-shield-halved"></i></div>PassVault</div><button id="pad-act" class="pa"></button></div>
+ <div class="pbody">
+  <div><h2 id="pad-t"></h2><p class="s" id="pad-s" style="margin:4px 0 0"></p></div>
+  <div><div class="dots" id="dots"><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="err" id="pad-e"></div><button class="lnk hide" id="pad-forgot" onclick="forgot()">PIN ভুলে গেছেন?</button></div>
+  <div class="pad" id="keys"></div>
+ </div>
+</section>
 
 <section id="v-sq" class="hide"><div class="card">
  <h2>সিকিউরিটি প্রশ্ন</h2><p class="s">PIN ভুলে গেলে এগুলো দিয়ে ফিরে পাবেন। ৩টি আলাদা প্রশ্ন বেছে এমন উত্তর দিন যা অন্যরা অনুমান করতে পারবে না।</p>
@@ -187,43 +241,95 @@ body[data-v=v-vault] #n-home,body[data-v=v-set] #n-set{color:var(--p)}
  <div class="err" id="fg-err"></div>
 </div></section>
 
-<section id="v-bio" class="hide"><div class="card" style="text-align:center">
- <h2>ফিঙ্গারপ্রিন্ট দিয়ে লগইন</h2><p class="s">আপনার যোগ করা ফিঙ্গারপ্রিন্ট ব্যবহার করুন।</p>
- <div class="fp"><i class="fa-solid fa-fingerprint"></i></div>
- <button onclick="doBio()"><i class="fa-solid fa-fingerprint"></i>ফিঙ্গারপ্রিন্ট স্ক্যান করুন</button>
- <button class="g" onclick="loginPad()"><i class="fa-solid fa-key"></i>PIN দিয়ে লগইন করুন</button>
- <div class="err" id="b-err"></div>
-</div></section>
+<section id="v-bio" class="hide pscr">
+ <div class="ptop"><div class="pbrand"><div class="lg2"><i class="fa-solid fa-shield-halved"></i></div>PassVault</div><button class="pa dg" onclick="switchAcct()"><i class="fa-solid fa-right-from-bracket"></i> লগআউট</button></div>
+ <div class="pbody">
+  <div><h2>ফিঙ্গারপ্রিন্ট দিয়ে লগইন</h2><p class="s" style="margin:4px 0 0">আপনার যোগ করা ফিঙ্গারপ্রিন্ট ব্যবহার করুন।</p></div>
+  <div class="fp" onclick="doBio()" style="cursor:pointer"><i class="fa-solid fa-fingerprint"></i></div>
+  <div style="width:100%"><button onclick="doBio()"><i class="fa-solid fa-fingerprint"></i>ফিঙ্গারপ্রিন্ট স্ক্যান করুন</button><button class="g" onclick="loginPad()"><i class="fa-solid fa-key"></i>PIN দিয়ে লগইন করুন</button><div class="err" id="b-err"></div></div>
+ </div>
+</section>
 
-<section id="v-set" class="hide"><div class="card">
- <h2><i class="fa-solid fa-gear"></i> সেটিংস</h2>
- <label>লগইন পদ্ধতি (এই ডিভাইসে)</label>
- <div class="opts"><button id="m-pin" onclick="setMethod('pin')"><i class="fa-solid fa-key"></i>PIN</button><button id="m-bio" class="g" onclick="setMethod('bio')"><i class="fa-solid fa-fingerprint"></i>ফিঙ্গারপ্রিন্ট</button></div>
- <label>যোগ করা ফিঙ্গারপ্রিন্ট</label>
- <div id="fp-list"></div>
- <div class="field" style="margin-top:10px"><i class="fa-solid fa-pen"></i><input id="fp-name" placeholder="নাম, যেমন: ডান বুড়ো আঙুল" autocomplete="off"></div>
- <button onclick="addFp()"><i class="fa-solid fa-plus"></i>নতুন ফিঙ্গারপ্রিন্ট যোগ করুন</button>
- <div class="warn"><i class="fa-solid fa-circle-info"></i> ওয়েবসাইট আঙুলের ছাপ নিজে পড়তে পারে না। যোগ করার সময় ফোন আপনার ফোনে সেট করা আঙুল দিয়ে যাচাই করবে, তাই নতুন আঙুল আগে ফোনের Settings এ যোগ করে নিন।</div>
- <button class="g inst hide" onclick="doInstall()"><i class="fa-solid fa-download"></i>অ্যাপ ইনস্টল করুন</button>
- <p class="s ioshint hide" style="margin-top:10px">iPhone এ: Safari এর Share বাটন চেপে "Add to Home Screen" বেছে নিন।</p>
- <button class="g" onclick="exportData()"><i class="fa-solid fa-file-export"></i>ব্যাকআপ ডাউনলোড (JSON)</button>
- <button class="g" onclick="$('imp').click()"><i class="fa-solid fa-file-import"></i>ব্যাকআপ থেকে ইম্পোর্ট</button>
- <input type="file" id="imp" accept="application/json,.json" class="hide" onchange="importData(this)">
- <button class="g" onclick="changePin()"><i class="fa-solid fa-lock"></i>PIN পরিবর্তন করুন</button>
- <button class="g" onclick="enter()">ফিরে যান</button>
- <div class="err" id="st-err"></div>
-</div></section>
+<section id="v-set" class="sheet">
+ <div class="sh-head"><div class="grab"></div><div class="sh-row"><b><i class="fa-solid fa-gear"></i>সেটিংস</b><button class="sh-x" onclick="goHome()" aria-label="বন্ধ"><i class="fa-solid fa-xmark"></i></button></div></div>
+ <div class="sbody">
+  <div class="prof"><div class="av" id="st-av"></div><div><b id="st-name"></b><small id="st-mob"></small></div><span class="okb"><i class="fa-solid fa-shield-halved"></i>সুরক্ষিত</span></div>
+
+  <div class="sgl">লগইন ও নিরাপত্তা</div>
+  <div class="slist">
+   <div class="srow col"><div class="stt"><span class="sic"><i class="fa-solid fa-right-to-bracket"></i></span><div><b>লগইন পদ্ধতি</b><small>এই ডিভাইসে যা দিয়ে ঢুকবেন</small></div></div>
+    <div class="opts"><button id="m-pin" onclick="setMethod('pin')"><i class="fa-solid fa-key"></i>PIN</button><button id="m-bio" class="g" onclick="setMethod('bio')"><i class="fa-solid fa-fingerprint"></i>ফিঙ্গারপ্রিন্ট</button></div></div>
+   <div class="srow"><span class="sic"><i class="fa-solid fa-clock"></i></span><div class="st"><b>অটো লক</b><small>নিষ্ক্রিয় থাকলে</small></div>
+    <select id="lt" class="ss" onchange="setLt(this.value)"><option value="30">৩০ সেকেন্ড</option><option value="60">১ মিনিট</option><option value="120">২ মিনিট</option><option value="300">৫ মিনিট</option><option value="600">১০ মিনিট</option></select></div>
+   <div class="srow"><span class="sic"><i class="fa-solid fa-bolt"></i></span><div class="st"><b>ছাড়লেই লক</b><small>অ্যাপ ব্যাকগ্রাউন্ডে গেলে সঙ্গে সঙ্গে</small></div><button class="tg" id="tg-lbi" onclick="tgl('lbi',false)" aria-label="ছাড়লেই লক"></button></div>
+   <div class="srow tap" onclick="changePin()"><span class="sic"><i class="fa-solid fa-lock"></i></span><div class="st"><b>PIN পরিবর্তন</b><small>নতুন ৬ সংখ্যার PIN দিন</small></div><i class="fa-solid fa-chevron-right chev"></i></div>
+   <div class="srow tap" onclick="openSq2()"><span class="sic"><i class="fa-solid fa-circle-question"></i></span><div class="st"><b>সিকিউরিটি প্রশ্ন</b><small>PIN ভুলে গেলে ফেরার প্রশ্ন বদলান</small></div><i class="fa-solid fa-chevron-right chev"></i></div>
+  </div>
+
+  <div class="sgl">ফিঙ্গারপ্রিন্ট</div>
+  <div class="slist"><div class="pd">
+   <div id="fp-list"></div>
+   <div class="field" style="margin-top:10px"><i class="fa-solid fa-pen"></i><input id="fp-name" placeholder="নাম, যেমন: ডান বুড়ো আঙুল" autocomplete="off"></div>
+   <button onclick="addFp(false)"><i class="fa-solid fa-plus"></i>নতুন ফিঙ্গারপ্রিন্ট যোগ করুন</button>
+   <button class="g" onclick="addFp(true)"><i class="fa-solid fa-key"></i>আলাদা ফিঙ্গারপ্রিন্ট কী (USB/NFC)</button>
+   <div class="warn"><i class="fa-solid fa-circle-info"></i> ব্রাউজার ফোনের সেন্সর থেকে আঙুলের ছাপ নিজে পড়তে পারে না, তাই প্রথম বাটনে ফোনে সেট করা আঙুলই কাজ করে। ফোন থেকে সম্পূর্ণ আলাদা ছাপ চাইলে নিজস্ব সেন্সরওয়ালা FIDO2 সিকিউরিটি কী যোগ করুন।</div>
+  </div></div>
+
+  <div class="sgl">কীপ্যাড ও কপি</div>
+  <div class="slist">
+   <div class="srow"><span class="sic"><i class="fa-solid fa-hand-pointer"></i></span><div class="st"><b>কীপ্যাডে কম্পন</b><small>PIN চাপার সময় হালকা ভাইব্রেশন</small></div><button class="tg" id="tg-vib" onclick="tgl('vib',true)" aria-label="কম্পন"></button></div>
+   <div class="srow"><span class="sic"><i class="fa-solid fa-clipboard"></i></span><div class="st"><b>কপি অটো-মোছা</b><small>পাসওয়ার্ড কপির পর ক্লিপবোর্ড খালি</small></div>
+    <select id="cbt" class="ss" onchange="setCbt(this.value)"><option value="15">১৫ সেকেন্ড</option><option value="30">৩০ সেকেন্ড</option><option value="60">১ মিনিট</option><option value="0">বন্ধ</option></select></div>
+  </div>
+
+  <div class="sgl">ভল্ট</div>
+  <div class="slist">
+   <div class="srow"><span class="sic"><i class="fa-solid fa-arrow-down-wide-short"></i></span><div class="st"><b>ডিফল্ট সাজানো</b><small>তালিকা যেভাবে দেখাবে</small></div>
+    <select id="srt" class="ss" onchange="setSrt(this.value)"><option value="new">নতুন আগে</option><option value="old">পুরোনো আগে</option><option value="name">নাম (A–Z)</option></select></div>
+   <div class="srow"><span class="sic"><i class="fa-solid fa-wand-magic-sparkles"></i></span><div class="st"><b>জেনারেটরের দৈর্ঘ্য</b><small>নতুন পাসওয়ার্ডের ডিফল্ট অক্ষর</small></div>
+    <select id="gdef" class="ss" onchange="setGdef(this.value)"><option value="12">১২</option><option value="16">১৬</option><option value="20">২০</option><option value="24">২৪</option><option value="32">৩২</option></select></div>
+  </div>
+
+  <div class="sgl">ডেটা ও ব্যাকআপ</div>
+  <div class="slist">
+   <div class="srow tap" onclick="exportData()"><span class="sic"><i class="fa-solid fa-file-export"></i></span><div class="st"><b>ব্যাকআপ ডাউনলোড</b><small>JSON ফাইল (এনক্রিপ্টেড নয়)</small></div><i class="fa-solid fa-chevron-right chev"></i></div>
+   <div class="srow tap" onclick="$('imp').click()"><span class="sic"><i class="fa-solid fa-file-import"></i></span><div class="st"><b>ব্যাকআপ থেকে ইম্পোর্ট</b><small>আগের JSON ফাইল যোগ করুন</small></div><i class="fa-solid fa-chevron-right chev"></i></div>
+  </div>
+  <input type="file" id="imp" accept="application/json,.json" class="hide" onchange="importData(this)">
+
+  <div class="sgl">অ্যাপ</div>
+  <div class="slist">
+   <div class="srow tap inst hide" onclick="doInstall()"><span class="sic"><i class="fa-solid fa-download"></i></span><div class="st"><b>অ্যাপ ইনস্টল করুন</b><small>হোম স্ক্রিনে যোগ করুন</small></div><i class="fa-solid fa-chevron-right chev"></i></div>
+   <div class="srow ioshint hide"><span class="sic"><i class="fa-solid fa-mobile-screen"></i></span><div class="st"><b>iPhone এ ইনস্টল</b><small>Safari এর Share বাটন, তারপর "Add to Home Screen"</small></div></div>
+   <div class="srow tap" onclick="refreshApp()"><span class="sic"><i class="fa-solid fa-rotate"></i></span><div class="st"><b>অ্যাপ আপডেট / রিফ্রেশ</b><small>সর্বশেষ সংস্করণ লোড করুন</small></div><i class="fa-solid fa-chevron-right chev"></i></div>
+   <div class="srow"><span class="sic"><i class="fa-solid fa-circle-info"></i></span><div class="st"><b>PassVault</b><small>সংস্করণ ২.১ · এনক্রিপ্টেড ক্লাউড ভল্ট</small></div></div>
+  </div>
+
+  <div class="sgl">অ্যাকাউন্ট</div>
+  <div class="slist">
+   <div class="srow tap red" onclick="switchAcct()"><span class="sic"><i class="fa-solid fa-right-from-bracket"></i></span><div class="st"><b>লগআউট</b><small>এই ডিভাইস থেকে সরান</small></div></div>
+   <div class="srow tap red" onclick="deleteAcct()"><span class="sic"><i class="fa-solid fa-user-slash"></i></span><div class="st"><b>অ্যাকাউন্ট চিরতরে মুছুন</b><small>ক্লাউডের সব ডেটা মুছে যাবে</small></div></div>
+  </div>
+  <div class="err" id="st-err"></div>
+ </div>
+</section>
+
+<section id="v-sq2" class="sheet">
+ <div class="sh-head"><div class="grab"></div><div class="sh-row"><b><i class="fa-solid fa-circle-question"></i>সিকিউরিটি প্রশ্ন</b><button class="sh-x" onclick="openSet()" aria-label="ফিরে যান"><i class="fa-solid fa-chevron-down"></i></button></div></div>
+ <div class="card"><p class="s">নতুন ৩টি আলাদা প্রশ্ন বেছে এমন উত্তর দিন যা অন্যরা অনুমান করতে পারবে না। আগের প্রশ্ন-উত্তর বাতিল হবে।</p>
+  <div id="sq2-rows"></div>
+  <button onclick="saveSq2()"><i class="fa-solid fa-floppy-disk"></i>সংরক্ষণ করুন</button>
+  <div class="err" id="sq2-err"></div></div>
+</section>
 
 <section id="v-vault" class="hide">
  <div class="hero"><div class="av" id="av"></div><div><b id="hello"></b><small><i class="fa-solid fa-cloud"></i> ক্লাউডে সিঙ্ক · সংরক্ষিত<span class="chip" id="cnt">0</span></small></div><div style="margin-left:auto;display:flex;gap:8px"><button class="lk" style="margin:0" onclick="openForm()" aria-label="নতুন যোগ করুন"><i class="fa-solid fa-plus"></i></button><button class="lk" style="margin:0" onclick="openSet()"><i class="fa-solid fa-gear"></i></button><button class="lk" style="margin:0" onclick="lock()"><i class="fa-solid fa-lock"></i></button></div></div>
- <div class="field" style="margin-bottom:14px"><i class="fa-solid fa-magnifying-glass"></i><input id="q" placeholder="অ্যাকাউন্ট খুঁজুন..." oninput="render()"></div>
+ <div style="display:flex;gap:8px;margin-bottom:14px"><div class="field" style="flex:1"><i class="fa-solid fa-magnifying-glass"></i><input id="q" placeholder="অ্যাকাউন্ট খুঁজুন..." oninput="render()"></div><button class="g sortb" onclick="cycleSort()" aria-label="সাজান"><i class="fa-solid fa-arrow-down-wide-short"></i></button></div>
  <div class="chips" id="chips"></div>
  <div id="list"></div>
- <button class="fab" onclick="openForm()" aria-label="নতুন"><i class="fa-solid fa-plus"></i></button>
 </section>
 
-<section id="v-form" class="hide"><div class="card">
-  <h2 id="form-t">অ্যাকাউন্ট সংরক্ষণ</h2>
+<section id="v-form" class="sheet"><div class="sh-head"><div class="grab"></div><div class="sh-row"><b><i class="fa-solid fa-circle-plus"></i><span id="form-t">অ্যাকাউন্ট সংরক্ষণ</span></b><button class="sh-x" onclick="goHome()" aria-label="বন্ধ"><i class="fa-solid fa-xmark"></i></button></div></div><div class="card">
   <label>প্ল্যাটফর্ম / নাম (ঐচ্ছিক)</label><div class="field"><i class="fa-solid fa-globe"></i><input id="f-pl" list="pls" placeholder="Facebook, Instagram, Gmail..."></div>
   <datalist id="pls"><option>Facebook<option>Instagram<option>Gmail<option>X (Twitter)<option>WhatsApp<option>LinkedIn<option>TikTok<option>YouTube<option>Telegram<option>GitHub</datalist>
   <label>ক্যাটাগরি</label><select id="f-cat"></select>
@@ -232,6 +338,8 @@ body[data-v=v-vault] #n-home,body[data-v=v-set] #n-set{color:var(--p)}
   <label>ইমেইল</label><div class="field"><i class="fa-solid fa-envelope"></i><input id="f-em" type="email"></div>
   <label>পাসওয়ার্ড</label><div class="field"><i class="fa-solid fa-key"></i><input id="f-pw" type="password" autocomplete="off" oninput="pwStr()" style="padding-right:50px"><button class="eye" type="button" onclick="eyeF()"><i class="fa-solid fa-eye"></i></button></div>
   <div class="sb"><i id="pw-bar"></i></div><small id="pw-lbl" style="color:var(--mut)"></small>
+  <div style="display:flex;align-items:center;gap:10px;margin-top:12px"><span class="s" style="margin:0;white-space:nowrap">দৈর্ঘ্য: <b id="gl">16</b></span><input type="range" id="glen" min="8" max="32" value="16" oninput="$('gl').textContent=this.value" style="flex:1;padding:0;border:0;background:none;box-shadow:none"></div>
+  <label style="display:flex;gap:8px;align-items:center;margin:6px 0 0"><input type="checkbox" id="gsym" checked style="width:18px;height:18px;padding:0"> বিশেষ চিহ্ন (!@#) থাকবে</label>
   <button class="g" onclick="genPw()"><i class="fa-solid fa-wand-magic-sparkles"></i>শক্তিশালী পাসওয়ার্ড বানান</button>
   <label>ওয়েবসাইট লিংক (ঐচ্ছিক)</label><div class="field"><i class="fa-solid fa-link"></i><input id="f-url" inputmode="url" placeholder="facebook.com" autocomplete="off"></div>
   <label>নোট (ঐচ্ছিক)</label><textarea id="f-note" placeholder="যেকোনো দরকারি তথ্য"></textarea>
@@ -239,7 +347,7 @@ body[data-v=v-vault] #n-home,body[data-v=v-set] #n-set{color:var(--p)}
   <button class="g" onclick="show('v-vault')">বাতিল</button>
   <div class="err" id="f-err"></div>
 </div></section>
-<nav id="bnav"><button class="nb" id="n-home" onclick="goHome()"><i class="fa-solid fa-house"></i>ভল্ট</button><button class="nb mid" onclick="openForm()" aria-label="যোগ করুন"><i class="fa-solid fa-plus"></i></button><button class="nb" id="n-set" onclick="openSet()"><i class="fa-solid fa-gear"></i>সেটিংস</button></nav>
+<div class="sbg" id="sbg" onclick="goHome()"></div>
 <div id="toast"></div>
 <div class="foot"><i class="fa-solid fa-lock"></i> এন্ড-টু-এন্ড এনক্রিপ্টেড · শুধু আপনিই পড়তে পারবেন</div>
 </div>
@@ -256,6 +364,8 @@ var firebaseConfig = {
   measurementId: "G-MJT1WNK9DY"
 };
 
+function setVH(){var h=window.visualViewport?window.visualViewport.height:window.innerHeight;document.documentElement.style.setProperty('--vh',(h/100)+'px')}
+setVH();window.addEventListener('resize',setVH);window.addEventListener('orientationchange',setVH);if(window.visualViewport)window.visualViewport.addEventListener('resize',setVH);
 var $=function(i){return document.getElementById(i)};
 var LS='passvault_v3',db=null;
 var CONFIGURED=firebaseConfig.apiKey&&firebaseConfig.apiKey.indexOf('YOUR')<0;
@@ -263,11 +373,24 @@ if(CONFIGURED){firebase.initializeApp(firebaseConfig);db=firebase.database()}
 var HASBIO=false,ACCT=null,META=null,RAW=null,K=null,DATA=[],NEW={},timer=null,editId=null,lastCt=null,REF=null,padBuf='',padCb=null,padBusy=false;
 var QS=['আপনার প্রথম স্কুলের নাম কী?','আপনার মায়ের ডাকনাম কী?','শৈশবের প্রিয় বন্ধুর নাম কী?','আপনি কোন গ্রাম/শহরে জন্মেছেন?','আপনার প্রথম পোষা প্রাণীর নাম কী?','আপনার প্রিয় শিক্ষকের নাম কী?','আপনার প্রথম ফোনের মডেল কী ছিল?','আপনার দাদা/নানার নাম কী?'];
 var enc=new TextEncoder(),dec=new TextDecoder(),ITER=600000;
-var VIEWS=['v-start','v-signup','v-mob','v-pad','v-sq','v-forgot','v-bio','v-vault','v-form','v-set'];
+var VIEWS=['v-start','v-signup','v-mob','v-pad','v-sq','v-forgot','v-bio','v-vault','v-form','v-set','v-sq2'];
 function b64(buf){var a=new Uint8Array(buf),s='';for(var i=0;i<a.length;i++)s+=String.fromCharCode(a[i]);return btoa(s)}
 function unb64(s){var b=atob(s),a=new Uint8Array(b.length);for(var i=0;i<b.length;i++)a[i]=b.charCodeAt(i);return a}
 function esc(s){return String(s||'').replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
-function show(id){VIEWS.forEach(function(v){$(v).classList.toggle('hide',v!==id)});document.body.setAttribute('data-v',id);if(id==='v-form'||id==='v-set'){try{history.pushState(null,'')}catch(e){}}window.scrollTo(0,0)}
+var SHEETS=['v-form','v-set','v-sq2'],PUSHED=false;
+function show(id){
+  var sh=SHEETS.indexOf(id)>-1;
+  VIEWS.forEach(function(v){
+    if(SHEETS.indexOf(v)>-1){var on=(v===id),el=$(v);el.classList.toggle('open',on);if(on)el.scrollTop=0}
+    else $(v).classList.toggle('hide',sh?v!=='v-vault':v!==id);
+  });
+  $('sbg').classList.toggle('on',sh);document.body.classList.toggle('sheet-open',sh);
+  document.body.setAttribute('data-v',sh?'v-vault':id);
+  if(sh&&!PUSHED){try{history.pushState(null,'');PUSHED=true}catch(e){}}
+  if(!sh){PUSHED=false;window.scrollTo(0,0)}
+}
+function cfg(k,d){var v=L()[k];return v===undefined?d:v}
+function setCfg(k,v){var o=L();o[k]=v;SL(o)}
 function goHome(){show('v-vault');render()}
 function L(){try{return JSON.parse(localStorage.getItem(LS))||{}}catch(e){return{}}}
 function SL(o){try{localStorage.setItem(LS,JSON.stringify(o))}catch(e){}}
@@ -283,19 +406,29 @@ async function aesEnc(key,bytes){var iv=crypto.getRandomValues(new Uint8Array(12
 function aesDec(key,iv,ct){return crypto.subtle.decrypt({name:'AES-GCM',iv:unb64(iv)},key,unb64(ct))}
 function dataKey(raw){return crypto.subtle.importKey('raw',raw,'AES-GCM',false,['encrypt','decrypt'])}
 async function persist(){var e=await aesEnc(K,enc.encode(JSON.stringify(DATA)));lastCt=e.ct;await db.ref('vaults/'+ACCT.id).update({iv:e.iv,ct:e.ct})}
-async function regCred(name){
-  var c=await navigator.credentials.create({publicKey:{challenge:crypto.getRandomValues(new Uint8Array(32)),rp:{name:'PassVault'},user:{id:crypto.getRandomValues(new Uint8Array(16)),name:name,displayName:name},pubKeyCredParams:[{type:'public-key',alg:-7},{type:'public-key',alg:-257}],authenticatorSelection:{authenticatorAttachment:'platform',userVerification:'required'},timeout:60000}});
+async function regCred(name,cross){
+  var c=await navigator.credentials.create({publicKey:{challenge:crypto.getRandomValues(new Uint8Array(32)),rp:{name:'PassVault'},user:{id:crypto.getRandomValues(new Uint8Array(16)),name:name,displayName:name},pubKeyCredParams:[{type:'public-key',alg:-7},{type:'public-key',alg:-257}],authenticatorSelection:{authenticatorAttachment:cross?'cross-platform':'platform',userVerification:'required'},timeout:60000}});
   return b64(c.rawId);
 }
 /* ---------- PIN pad (কাস্টম কীপ্যাড, ফোনের কীবোর্ড খোলে না) ---------- */
 (function(){var h='';'123456789'.split('').forEach(function(n){h+='<button class="k" onclick="padKey(\''+n+'\')">'+n+'</button>'});
 h+='<button class="k" id="k-bio" onclick="startBio()" style="visibility:hidden"><i class="fa-solid fa-fingerprint"></i></button><button class="k" onclick="padKey(\'0\')">0</button><button class="k" onclick="padKey(\'b\')"><i class="fa-solid fa-delete-left"></i></button>';$('keys').innerHTML=h;
 var r='';for(var i=0;i<3;i++){r+='<div class="qa"><select id="sqs'+i+'">'+QS.map(function(q,j){return'<option value="'+j+'"'+(j===i?' selected':'')+'>'+q+'</option>'}).join('')+'</select><div class="field"><i class="fa-solid fa-pen"></i><input id="sqa'+i+'" placeholder="আপনার উত্তর" autocomplete="off"></div></div>'}$('sq-rows').innerHTML=r})();
-function openPad(o){padBuf='';padBusy=false;padCb=o.cb;$('pad-t').textContent=o.t;$('pad-s').textContent=o.s;$('pad-e').textContent=o.e||'';$('pad-login').classList.toggle('hide',!o.login);$('k-bio').style.visibility=(o.login&&HASBIO)?'visible':'hidden';dots();show('v-pad')}
+var padLogin=false,padActFn=null,RESETFROM='login';
+function actSignup(){return{t:'বাতিল',i:'xmark',f:function(){NEW={};show('v-signup')}}}
+function actReset(){return{t:'বাতিল',i:'xmark',f:function(){NEW={};if(RESETFROM==='set')openSet();else{RAW=null;loginPad()}}}}
+function openPad(o){
+  padBuf='';padBusy=false;padCb=o.cb;padLogin=!!o.login;
+  $('pad-t').textContent=o.t;$('pad-s').textContent=o.s;$('pad-e').textContent=o.e||'';$('pad-forgot').classList.add('hide');
+  var a=o.act||{t:'বাতিল',i:'xmark',f:function(){if(ACCT)loginStart();else show('v-start')}};padActFn=a.f;
+  var b=$('pad-act');b.className='pa'+(a.dg?' dg':'');b.onclick=function(){padActFn()};b.innerHTML='<i class="fa-solid fa-'+a.i+'"></i> '+a.t;
+  $('k-bio').style.visibility=(o.login&&HASBIO)?'visible':'hidden';dots();show('v-pad');
+}
 function dots(){var d=$('dots').children;for(var i=0;i<6;i++)d[i].classList.toggle('f',i<padBuf.length)}
-function padErr(m){$('pad-e').textContent=m;var d=$('dots');d.classList.remove('shake');void d.offsetWidth;d.classList.add('shake')}
+function padErr(m){$('pad-e').textContent=m;if(padLogin)$('pad-forgot').classList.remove('hide');var d=$('dots');d.classList.remove('shake');void d.offsetWidth;d.classList.add('shake')}
 function padKey(k){
   if(padBusy)return;
+  if(cfg('vib',true)&&navigator.vibrate){try{navigator.vibrate(8)}catch(e){}}
   if(k==='b')padBuf=padBuf.slice(0,-1);else if(padBuf.length<6)padBuf+=k;
   dots();
   if(padBuf.length===6){padBusy=true;var p=padBuf;setTimeout(async function(){padBuf='';dots();try{await padCb(p)}catch(x){padErr('সমস্যা হয়েছে, আবার চেষ্টা করুন')}padBusy=false},120)}
@@ -315,9 +448,9 @@ async function su1(){
     NEW={name:n,mob:m,id:id};e.textContent='';newPin();
   }catch(x){e.textContent='সংযোগ হয়নি। ইন্টারনেট ও Database rules চেক করুন।'}
 }
-function newPin(msg){openPad({t:'PIN তৈরি করুন',s:'৬ সংখ্যার একটি PIN দিন',e:msg,cb:function(p){
+function newPin(msg){openPad({act:actSignup(),t:'PIN তৈরি করুন',s:'৬ সংখ্যার একটি PIN দিন',e:msg,cb:function(p){
   if(weak(p)){newPin('সহজ PIN (১২৩৪৫৬, ১১১১১১) দেবেন না');return}
-  NEW.pin=p;openPad({t:'PIN আবার দিন',s:'নিশ্চিত করতে একই PIN দিন',cb:function(p2){
+  NEW.pin=p;openPad({act:actSignup(),t:'PIN আবার দিন',s:'নিশ্চিত করতে একই PIN দিন',cb:function(p2){
     if(p2!==NEW.pin){newPin('PIN মেলেনি, আবার দিন');return}
     $('sq-err').textContent='';show('v-sq')}})}})}
 async function su2(withFp){
@@ -351,7 +484,7 @@ async function mobLogin(){
     META=s.val();ACCT={mobile:m,id:id,name:META.name};e.textContent='';loginStart();
   }catch(x){e.textContent='সংযোগ হয়নি। ইন্টারনেট চেক করুন।'}
 }
-function loginPad(msg){openPad({t:'স্বাগতম, '+ACCT.name,s:'আপনার ৬ সংখ্যার PIN দিন',e:msg,login:true,cb:doPin})}
+function loginPad(msg){openPad({t:'স্বাগতম, '+ACCT.name,s:'আপনার ৬ সংখ্যার PIN দিন',e:msg,login:true,act:{t:'লগআউট',i:'right-from-bracket',dg:true,f:switchAcct},cb:doPin})}
 async function getMeta(){var s=await db.ref('vaults/'+ACCT.id).get();if(!s.exists())throw 0;META=s.val()}
 async function doPin(p){
   var o=L(),f=o.f||{n:0,u:0},now=Date.now();
@@ -373,7 +506,7 @@ async function doBio(){
   var e=$('b-err');e.textContent='';
   try{
     var b=await idbGet('bio:'+ACCT.id);if(!b)throw 0;
-    await navigator.credentials.get({publicKey:{challenge:crypto.getRandomValues(new Uint8Array(32)),allowCredentials:b.fps.map(function(f){return{type:'public-key',id:unb64(f.id)}}),userVerification:'required',timeout:60000}});
+    await navigator.credentials.get({publicKey:{challenge:crypto.getRandomValues(new Uint8Array(32)),allowCredentials:b.fps.map(function(f){return f.x?{type:'public-key',id:unb64(f.id),transports:['usb','nfc','ble']}:{type:'public-key',id:unb64(f.id)}}),userVerification:'required',timeout:60000}});
     var raw=new Uint8Array(await aesDec(b.wk,b.w.iv,b.w.ct));
     await getMeta();K=await dataKey(raw);RAW=raw;
     DATA=JSON.parse(dec.decode(await aesDec(K,META.iv,META.ct)));lastCt=META.ct;enter();
@@ -383,17 +516,20 @@ async function doBio(){
 function idb(){return new Promise(function(r,j){var q=indexedDB.open('pv',1);q.onupgradeneeded=function(){q.result.createObjectStore('k')};q.onsuccess=function(){r(q.result)};q.onerror=function(){j(q.error)}})}
 async function idbGet(k){var d=await idb();return new Promise(function(r){var q=d.transaction('k').objectStore('k').get(k);q.onsuccess=function(){r(q.result||null)};q.onerror=function(){r(null)}})}
 async function idbSet(k,v){var d=await idb();return new Promise(function(r,j){var t=d.transaction('k','readwrite');if(v===null)t.objectStore('k').delete(k);else t.objectStore('k').put(v,k);t.oncomplete=r;t.onerror=function(){j(t.error)}})}
-async function saveFp(id,name){
+async function saveFp(id,name,x){
   var k='bio:'+ACCT.id,b=await idbGet(k);
   if(!b){var wk=await crypto.subtle.generateKey({name:'AES-GCM',length:256},false,['encrypt','decrypt']);b={wk:wk,w:await aesEnc(wk,RAW),fps:[]}}
-  b.fps.push({id:id,name:name,t:Date.now()});await idbSet(k,b);
+  b.fps.push({id:id,name:name,x:!!x,t:Date.now()});await idbSet(k,b);
 }
 function openSet(){$('st-err').textContent='';renderSet();show('v-set')}
 async function renderSet(){
+  $('lt').value=String(cfg('lt',120));$('cbt').value=String(cfg('cbt',30));$('srt').value=SORT;$('gdef').value=String(cfg('gl',16));
+  $('st-av').textContent=ACCT.name.charAt(0).toUpperCase();$('st-name').textContent=ACCT.name;$('st-mob').textContent='••• '+String(ACCT.mobile).slice(-4);
+  [['vib',true],['lbi',false]].forEach(function(a){$('tg-'+a[0]).classList.toggle('on',cfg(a[0],a[1]))});
   var b=null;try{b=await idbGet('bio:'+ACCT.id)}catch(x){}
   var fps=(b&&b.fps)||[],m=((L().m||{})[ACCT.id]==='bio'&&fps.length)?'bio':'pin';
   $('m-pin').classList.toggle('g',m!=='pin');$('m-bio').classList.toggle('g',m!=='bio');
-  var h='';fps.forEach(function(f,i){h+='<div class="fprow"><i class="fa-solid fa-fingerprint" style="color:var(--p)"></i><b>'+esc(f.name)+'</b><button class="d" onclick="rmFp('+i+')"><i class="fa-solid fa-trash"></i></button></div>'});
+  var h='';fps.forEach(function(f,i){h+='<div class="fprow"><i class="fa-solid fa-'+(f.x?'key':'fingerprint')+'" style="color:var(--p)"></i><b>'+esc(f.name)+(f.x?' (সিকিউরিটি কী)':'')+'</b><button class="d" onclick="rmFp('+i+')"><i class="fa-solid fa-trash"></i></button></div>'});
   $('fp-list').innerHTML=h||'<p class="s" style="margin:0">কোনো ফিঙ্গারপ্রিন্ট যোগ করা নেই</p>';
 }
 async function setMethod(m){
@@ -401,10 +537,10 @@ async function setMethod(m){
   if(m==='bio'&&!(b&&b.fps&&b.fps.length)){e.textContent='আগে একটি ফিঙ্গারপ্রিন্ট যোগ করুন';return}
   var o=L();o.m=o.m||{};o.m[ACCT.id]=m;SL(o);renderSet();
 }
-async function addFp(){
+async function addFp(cross){
   var e=$('st-err');e.textContent='';var b=null;try{b=await idbGet('bio:'+ACCT.id)}catch(x){}
   var n=$('fp-name').value.trim()||('ফিঙ্গারপ্রিন্ট '+(((b&&b.fps)||[]).length+1));
-  try{var id=await regCred(n);await saveFp(id,n);$('fp-name').value='';renderSet()}
+  try{var id=await regCred(n,cross);await saveFp(id,n,cross);$('fp-name').value='';renderSet()}
   catch(x){e.textContent='ফিঙ্গারপ্রিন্ট যোগ হয়নি। ফোনে ফিঙ্গারপ্রিন্ট/স্ক্রিন লক চালু আছে কিনা দেখুন।'}
 }
 async function rmFp(i){
@@ -413,9 +549,45 @@ async function rmFp(i){
   if(!b.fps.length){await idbSet(k,null);var o=L();o.m=o.m||{};o.m[ACCT.id]='pin';SL(o)}else await idbSet(k,b);
   renderSet();
 }
-function changePin(){NEW={};resetPin()}
+function tgl(k,d){setCfg(k,!cfg(k,d));renderSet()}
+function setCbt(v){setCfg('cbt',+v);toast('সংরক্ষিত হয়েছে')}
+function setGdef(v){setCfg('gl',+v);toast('সংরক্ষিত হয়েছে')}
+function setSrt(v){SORT=v;setCfg('sort',v);render();toast('সংরক্ষিত হয়েছে')}
+async function refreshApp(){
+  if(!navigator.onLine){toast('ইন্টারনেট নেই');return}
+  try{if('serviceWorker' in navigator){var r=await navigator.serviceWorker.getRegistration();if(r)await r.update()}var ks=await caches.keys();await Promise.all(ks.map(function(k){return caches.delete(k)}))}catch(e){}
+  location.reload();
+}
+function openSq2(){
+  var r='';for(var i=0;i<3;i++){r+='<div class="qa"><select id="q2s'+i+'">'+QS.map(function(q,j){return'<option value="'+j+'"'+(j===i?' selected':'')+'>'+q+'</option>'}).join('')+'</select><div class="field"><i class="fa-solid fa-pen"></i><input id="q2a'+i+'" placeholder="আপনার উত্তর" autocomplete="off"></div></div>'}
+  $('sq2-rows').innerHTML=r;$('sq2-err').textContent='';show('v-sq2');
+}
+async function saveSq2(){
+  var e=$('sq2-err'),qs=[],as=[];e.textContent='';
+  for(var i=0;i<3;i++){qs.push(+$('q2s'+i).value);var a=norm($('q2a'+i).value);if(a.length<2){e.textContent='তিনটি প্রশ্নেরই উত্তর লিখুন';return}as.push(a)}
+  if(new Set(qs).size<3){e.textContent='তিনটি আলাদা প্রশ্ন বেছে নিন';return}
+  e.textContent='সংরক্ষণ হচ্ছে...';
+  try{
+    var qsalt=crypto.getRandomValues(new Uint8Array(16)),wq=await aesEnc(await dk('ans:'+as.join('|'),qsalt),RAW);
+    var u={qs:qs.join(','),qsalt:b64(qsalt),wqi:wq.iv,wq:wq.ct};
+    await db.ref('vaults/'+ACCT.id).update(u);META=Object.assign(META||{},u);toast('সিকিউরিটি প্রশ্ন বদলানো হয়েছে');openSet();
+  }catch(x){e.textContent='সংরক্ষণ হয়নি। ইন্টারনেট চেক করুন।'}
+}
+function changePin(){NEW={};RESETFROM='set';resetPin()}
 function enter(){$('hello').textContent=ACCT.name;$('av').textContent=ACCT.name.charAt(0).toUpperCase();$('q').value='';render();show('v-vault');arm();listen()}
-function switchAcct(){if(confirm('এই ডিভাইস থেকে অ্যাকাউন্ট সরানো হবে (ক্লাউডের ডেটা থাকবে)। নিশ্চিত?')){var o=L();delete o.acct;SL(o);ACCT=null;META=null;show('v-start')}}
+function clearLocal(){
+  var id=ACCT&&ACCT.id;if(REF){REF.off();REF=null}
+  if(id){try{idbSet('bio:'+id,null)}catch(e){}}
+  var o=L();delete o.acct;if(o.m&&id)delete o.m[id];SL(o);
+  K=null;RAW=null;DATA=[];META=null;ACCT=null;clearTimeout(timer);show('v-start');
+}
+function switchAcct(){if(confirm('লগআউট করলে এই ডিভাইসের ফিঙ্গারপ্রিন্ট সেটিংসও মুছে যাবে, আবার ঢুকতে মোবাইল নম্বর ও PIN লাগবে। ক্লাউডের ডেটা থাকবে। লগআউট করবেন?'))clearLocal()}
+async function deleteAcct(){
+  if(!confirm('অ্যাকাউন্ট ও সব সংরক্ষিত তথ্য ক্লাউড থেকে চিরতরে মুছে যাবে, ফেরত পাওয়া যাবে না। চালিয়ে যাবেন?'))return;
+  if(prompt('নিশ্চিত করতে DELETE লিখুন')!=='DELETE')return;
+  try{await db.ref('vaults/'+ACCT.id).remove();clearLocal();toast('অ্যাকাউন্ট মুছে ফেলা হয়েছে')}catch(x){$('st-err').textContent='মুছতে ব্যর্থ, ইন্টারনেট চেক করুন'}
+}
+function setLt(v){var o=L();o.lt=+v;SL(o);arm();toast('অটো লক বদলানো হয়েছে')}
 /* ---------- PIN ভুলে গেলে ---------- */
 async function forgot(){
   try{await getMeta()}catch(x){padErr('সার্ভারে সংযোগ হয়নি');return}
@@ -427,17 +599,18 @@ async function doForgot(){
   if(as.some(function(a){return!a})){e.textContent='সব উত্তর লিখুন';return}
   e.textContent='যাচাই হচ্ছে...';
   try{RAW=new Uint8Array(await aesDec(await dk('ans:'+as.join('|'),unb64(META.qsalt)),META.wqi,META.wq))}catch(x){e.textContent='উত্তর মেলেনি';return}
-  e.textContent='';resetPin();
+  e.textContent='';RESETFROM='login';resetPin();
 }
-function resetPin(msg){openPad({t:'নতুন PIN দিন',s:'৬ সংখ্যার নতুন PIN দিন',e:msg,cb:function(p){
+function resetPin(msg){openPad({act:actReset(),t:'নতুন PIN দিন',s:'৬ সংখ্যার নতুন PIN দিন',e:msg,cb:function(p){
   if(weak(p)){resetPin('সহজ PIN দেবেন না');return}
-  NEW.pin=p;openPad({t:'নতুন PIN আবার দিন',s:'নিশ্চিত করতে একই PIN দিন',cb:async function(p2){
+  NEW.pin=p;openPad({act:actReset(),t:'নতুন PIN আবার দিন',s:'নিশ্চিত করতে একই PIN দিন',cb:async function(p2){
     if(p2!==NEW.pin){resetPin('PIN মেলেনি, আবার দিন');return}
     var salt=crypto.getRandomValues(new Uint8Array(16)),wp=await aesEnc(await dk('pin:'+p2,salt),RAW);
     K=await dataKey(RAW);DATA=JSON.parse(dec.decode(await aesDec(K,META.iv,META.ct)));lastCt=META.ct;
     await db.ref('vaults/'+ACCT.id).update({salt:b64(salt),wpi:wp.iv,wp:wp.ct});
     RAW=null;NEW={};var o=L();o.f={n:0,u:0};SL(o);enter();}})}})}
 function listen(){
+  if(REF)REF.off();
   REF=db.ref('vaults/'+ACCT.id);
   REF.on('value',async function(s){
     var v=s.val();if(!v||!K||v.ct===lastCt)return;
@@ -445,28 +618,46 @@ function listen(){
   });
 }
 /* ---------- Vault ---------- */
+var AU={},SORT='new';
 var CATS=['সোশ্যাল','ইমেইল','ব্যাংক/পেমেন্ট','কাজ','অন্যান্য'],FILTER='সব',clipT=null;
 var ICONS={facebook:'facebook',instagram:'instagram',gmail:'google',google:'google',x:'x-twitter',twitter:'x-twitter',whatsapp:'whatsapp',linkedin:'linkedin',tiktok:'tiktok',youtube:'youtube',telegram:'telegram',github:'github'};
 (function(){$('f-cat').innerHTML=CATS.map(function(c){return'<option>'+c+'</option>'}).join('')})();
 function icon(n){var k=(n||'').toLowerCase();for(var key in ICONS){if(k.indexOf(key)===0||k.indexOf(key)>-1&&key.length>2)return'<i class="fa-brands fa-'+ICONS[key]+'"></i>'}return'<i class="fa-solid fa-globe"></i>'}
-function toast(m){var t=$('toast');t.textContent=m;t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(function(){t.classList.remove('on')},2000)}
+function toast(m,lb,fn){
+  var t=$('toast');t.textContent=m;t.style.pointerEvents=fn?'auto':'none';
+  if(fn){var b=document.createElement('b');b.textContent=lb;b.style.cssText='margin-left:14px;color:#8fc2ff;cursor:pointer;text-decoration:underline';b.onclick=function(){t.classList.remove('on');fn()};t.appendChild(b)}
+  t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(function(){t.classList.remove('on')},fn?5000:2000);
+}
+function score(v){var n=0;if(v.length>=8)n++;if(v.length>=12)n++;if(/[a-z]/.test(v)&&/[A-Z]/.test(v))n++;if(/\d/.test(v)&&/[^A-Za-z0-9]/.test(v))n++;return v?Math.max(n,1):0}
+function audit(){
+  var r={},c={};DATA.forEach(function(d){if(d.pw)c[d.pw]=(c[d.pw]||0)+1});
+  DATA.forEach(function(d,i){var a=[];if(d.pw){if(score(d.pw)<=2)a.push('দুর্বল');if(c[d.pw]>1)a.push('একই পাসওয়ার্ড')}if(d.t&&Date.now()-d.t>90*864e5)a.push('৯০ দিনের পুরোনো');if(a.length)r[i]=a});
+  return r;
+}
+function secHtml(){
+  if(!DATA.length||FILTER!=='সব'||$('q').value)return'';
+  var bad=Object.keys(AU).length,sc=Math.round(100*(DATA.length-bad)/DATA.length),c=sc>=80?'#1a9d5c':sc>=50?'#e8833a':'#d93a3a';
+  return'<div class="sec" onclick="setF(\'ঝুঁকিপূর্ণ\')"><div class="secn" style="background:'+c+'">'+sc+'%</div><div><b>সিকিউরিটি চেক</b><small>'+(bad?bad+'টি অ্যাকাউন্টে সতর্কতা · দেখতে চাপুন':'সব পাসওয়ার্ড ঠিক আছে')+'</small></div></div>';
+}
+function cycleSort(){var m=['new','old','name'],t={'new':'নতুন আগে','old':'পুরোনো আগে','name':'নাম অনুযায়ী (A–Z)'};SORT=m[(m.indexOf(SORT)+1)%3];setCfg('sort',SORT);render();toast('সাজানো: '+t[SORT])}
 function fixUrl(u){u=(u||'').trim();if(!u)return'';if(!/^https?:\/\//i.test(u))u='https://'+u;return/^https?:\/\/[^\s\/]+\.[^\s]+$/i.test(u)?u:''}
 function setF(c){FILTER=c;render()}
-function chips(){var h='';['সব','প্রিয়'].concat(CATS).forEach(function(c){h+='<span class="chip2'+(c===FILTER?' on':'')+'" data-c="'+esc(c)+'" onclick="setF(this.dataset.c)">'+(c==='প্রিয়'?'<i class="fa-solid fa-star"></i> ':'')+esc(c)+'</span>'});$('chips').innerHTML=h}
+function chips(){var h='';['সব','প্রিয়','ঝুঁকিপূর্ণ'].concat(CATS).forEach(function(c){h+='<span class="chip2'+(c===FILTER?' on':'')+'" data-c="'+esc(c)+'" onclick="setF(this.dataset.c)">'+(c==='প্রিয়'?'<i class="fa-solid fa-star"></i> ':c==='ঝুঁকিপূর্ণ'?'<i class="fa-solid fa-triangle-exclamation"></i> ':'')+esc(c)+'</span>'});$('chips').innerHTML=h}
 function fr(i,k,ic,v){return v?'<div class="fr"><i class="fa-solid fa-'+ic+'"></i><span>'+esc(v)+'</span><button class="g" onclick="cpf('+i+',\''+k+'\')"><i class="fa-solid fa-copy"></i></button></div>':''}
 function render(){
-  var ce=$('cnt');if(ce)ce.textContent=DATA.length;chips();
+  var ce=$('cnt');if(ce)ce.textContent=DATA.length;AU=audit();chips();
   var q=$('q').value.toLowerCase(),ix=[];
   DATA.forEach(function(d,i){
     if(FILTER==='প্রিয়'&&!d.fav)return;
-    if(FILTER!=='সব'&&FILTER!=='প্রিয়'&&d.cat!==FILTER)return;
+    if(FILTER==='ঝুঁকিপূর্ণ'&&!AU[i])return;
+    if(FILTER!=='সব'&&FILTER!=='প্রিয়'&&FILTER!=='ঝুঁকিপূর্ণ'&&d.cat!==FILTER)return;
     if(q&&[d.pl,d.us,d.mo,d.em,d.url,d.note].join(' ').toLowerCase().indexOf(q)<0)return;
     ix.push(i)});
-  ix.sort(function(a,b){return(DATA[b].fav?1:0)-(DATA[a].fav?1:0)||(DATA[b].t||0)-(DATA[a].t||0)});
+  ix.sort(function(a,b){var f=(DATA[b].fav?1:0)-(DATA[a].fav?1:0);if(f)return f;if(SORT==='name')return String(DATA[a].pl).localeCompare(String(DATA[b].pl));return SORT==='old'?(DATA[a].t||0)-(DATA[b].t||0):(DATA[b].t||0)-(DATA[a].t||0)});
   var h='';
   ix.forEach(function(i){var d=DATA[i],host='';
     if(d.url){try{host=new URL(d.url).hostname}catch(e){}}
-    h+='<div class="it"><div class="row"><div class="ic">'+icon(d.pl)+'</div><div style="min-width:0"><b>'+esc(d.pl||d.em||d.us||d.mo)+'</b>'+(d.cat?'<span class="tag">'+esc(d.cat)+'</span>':'')+'</div><button class="star'+(d.fav?' on':'')+'" onclick="fav('+i+')"><i class="fa-solid fa-star"></i></button></div>'+
+    h+='<div class="it"><div class="row"><div class="ic">'+icon(d.pl)+'</div><div style="min-width:0"><b>'+esc(d.pl||d.em||d.us||d.mo)+'</b>'+(d.cat?'<span class="tag">'+esc(d.cat)+'</span>':'')+(AU[i]||[]).map(function(x){return'<span class="tag rk">'+x+'</span>'}).join('')+'</div><button class="star'+(d.fav?' on':'')+'" onclick="fav('+i+')"><i class="fa-solid fa-star"></i></button></div>'+
     fr(i,'us','user',d.us)+fr(i,'mo','phone',d.mo)+fr(i,'em','envelope',d.em)+
     (d.pw?'<div class="fr"><i class="fa-solid fa-key"></i><span id="pw'+i+'">••••••••</span><button class="g" onclick="togglePw('+i+')"><i class="fa-solid fa-eye"></i></button><button class="g" onclick="cpf('+i+',\'pw\')"><i class="fa-solid fa-copy"></i></button></div>':'')+
     (host?'<div class="fr"><i class="fa-solid fa-link"></i><span>'+esc(host)+'</span><a href="'+esc(d.url)+'" target="_blank" rel="noopener noreferrer"><button class="g"><i class="fa-solid fa-arrow-up-right-from-square"></i></button></a></div>':'')+
@@ -474,20 +665,20 @@ function render(){
     (d.t?'<div class="meta">আপডেট: '+new Date(d.t).toLocaleDateString('bn-BD')+'</div>':'')+
     '<div class="acts"><button class="g" onclick="openForm('+i+')"><i class="fa-solid fa-pen"></i>এডিট</button><button class="g" onclick="dup('+i+')"><i class="fa-solid fa-clone"></i>ডুপ্লিকেট</button><button class="d" onclick="del('+i+')"><i class="fa-solid fa-trash"></i>মুছুন</button></div></div>';
   });
-  $('list').innerHTML=h||'<div class="card" style="text-align:center;color:var(--mut)"><i class="fa-solid fa-box-open" style="font-size:28px"></i><p class="s" style="margin-top:8px">কিছু পাওয়া যায়নি</p></div>';
+  $('list').innerHTML=secHtml()+(h||'<div class="card" style="text-align:center;color:var(--mut)"><i class="fa-solid fa-box-open" style="font-size:28px"></i><p class="s" style="margin-top:8px">কিছু পাওয়া যায়নি</p></div>');
 }
 async function commit(msg){try{await persist();render();if(msg)toast(msg)}catch(e){toast('সংরক্ষণ হয়নি, ইন্টারনেট চেক করুন')}}
 function togglePw(i){var s=$('pw'+i);s.textContent=s.textContent==='••••••••'?DATA[i].pw:'••••••••'}
 function copyText(t){if(navigator.clipboard&&window.isSecureContext)return navigator.clipboard.writeText(t);var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(e){}a.remove();return Promise.resolve()}
 async function cpf(i,k){
-  var v=DATA[i][k];if(!v)return;
-  try{await copyText(v);toast(k==='pw'?'পাসওয়ার্ড কপি হয়েছে (৩০ সেকেন্ডে মুছবে)':'কপি হয়েছে');
-    if(k==='pw'){clearTimeout(clipT);clipT=setTimeout(function(){try{navigator.clipboard.writeText('')}catch(e){}},30000)}
+  var v=DATA[i][k];if(!v)return;var sec=cfg('cbt',30);
+  try{await copyText(v);toast(k==='pw'?'পাসওয়ার্ড কপি হয়েছে'+(sec?' ('+sec+' সেকেন্ডে মুছবে)':''):'কপি হয়েছে');
+    if(k==='pw'&&sec){clearTimeout(clipT);clipT=setTimeout(function(){try{navigator.clipboard.writeText('')}catch(e){}},sec*1000)}
   }catch(e){toast('কপি করা যায়নি')}
 }
 function fav(i){DATA[i].fav=!DATA[i].fav;commit()}
 function dup(i){var d=JSON.parse(JSON.stringify(DATA[i]));d.pl+=' (কপি)';d.fav=false;d.t=Date.now();DATA.push(d);commit('ডুপ্লিকেট হয়েছে')}
-function del(i){if(!confirm('"'+DATA[i].pl+'" মুছে ফেলবেন?'))return;DATA.splice(i,1);commit('মুছে ফেলা হয়েছে')}
+async function del(i){var it=DATA.splice(i,1)[0];try{await persist();render();toast('মুছে ফেলা হয়েছে','ফিরিয়ে আনুন',function(){DATA.splice(i,0,it);commit('ফিরিয়ে আনা হয়েছে')})}catch(e){DATA.splice(i,0,it);render();toast('মোছা যায়নি, ইন্টারনেট চেক করুন')}}
 function eyeF(){var f=$('f-pw');f.type=f.type==='password'?'text':'password'}
 function pwStr(){
   var v=$('f-pw').value,n=0;
@@ -498,13 +689,15 @@ function pwStr(){
 function openForm(i){
   editId=(typeof i==='number')?i:null;var d=editId!==null?DATA[editId]:{};
   $('form-t').textContent=editId!==null?'অ্যাকাউন্ট এডিট':'নতুন অ্যাকাউন্ট';
-  $('f-pl').value=d.pl||'';$('f-cat').value=d.cat||(FILTER!=='সব'&&FILTER!=='প্রিয়'?FILTER:'সোশ্যাল');
+  $('f-pl').value=d.pl||'';$('f-cat').value=d.cat||(CATS.indexOf(FILTER)>-1?FILTER:'সোশ্যাল');
   $('f-us').value=d.us||'';$('f-mo').value=d.mo||'';$('f-em').value=d.em||'';$('f-pw').value=d.pw||'';$('f-pw').type='password';
-  $('f-url').value=d.url||'';$('f-note').value=d.note||'';$('f-err').textContent='';pwStr();show('v-form');
+  $('f-url').value=d.url||'';$('f-note').value=d.note||'';$('f-err').textContent='';pwStr();$('glen').value=cfg('gl',16);$('gl').textContent=$('glen').value;show('v-form');
 }
 function genPw(){
-  var cs='abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789!@#$%^&*',a=crypto.getRandomValues(new Uint32Array(18)),s='';
-  for(var i=0;i<18;i++)s+=cs[a[i]%cs.length];$('f-pw').value=s;$('f-pw').type='text';pwStr();
+  var n=+$('glen').value||16,sym=$('gsym').checked,cs='abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789'+(sym?'!@#$%^&*?':'');
+  var lim=256-(256%cs.length),s='';
+  while(s.length<n){var a=crypto.getRandomValues(new Uint8Array(n*2));for(var i=0;i<a.length&&s.length<n;i++){if(a[i]<lim)s+=cs[a[i]%cs.length]}}
+  $('f-pw').value=s;$('f-pw').type='text';pwStr();
 }
 async function saveEntry(){
   var raw=$('f-url').value.trim(),url=fixUrl(raw);
@@ -536,10 +729,10 @@ function importData(inp){
   r.readAsText(f);inp.value='';
 }
 function lock(){if(REF){REF.off();REF=null}K=null;RAW=null;DATA=[];clearTimeout(timer);if(ACCT)loginStart();else show('v-start')}
-function arm(){clearTimeout(timer);timer=setTimeout(lock,120000)}
+function arm(){clearTimeout(timer);timer=setTimeout(lock,cfg('lt',120)*1000)}
 ['click','keydown','touchstart'].forEach(function(ev){document.addEventListener(ev,function(){if(K&&!$('v-vault').classList.contains('hide'))arm()})});
 /* ---------- Init ---------- */
-(function(){var o=L();if(o.acct){ACCT=o.acct;loginStart()}else show('v-start')})();
+(function(){SORT=cfg('sort','new');var o=L();if(o.acct){ACCT=o.acct;loginStart()}else show('v-start')})();
 
 /* ---------- অ্যাপের মতো আচরণ (PWA) ---------- */
 var deferredPrompt=null;
@@ -547,13 +740,13 @@ window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();def
 window.addEventListener('appinstalled',function(){deferredPrompt=null;document.querySelectorAll('.inst').forEach(function(b){b.classList.add('hide')})});
 function doInstall(){if(deferredPrompt){deferredPrompt.prompt();deferredPrompt=null}}
 if(/iphone|ipad|ipod/i.test(navigator.userAgent)&&!navigator.standalone){document.querySelectorAll('.ioshint').forEach(function(b){b.classList.remove('hide')})}
-window.addEventListener('popstate',function(){if(!$('v-form').classList.contains('hide')||!$('v-set').classList.contains('hide'))goHome()});
+window.addEventListener('popstate',function(){if(SHEETS.some(function(v){return $(v).classList.contains('open')}))goHome()});
 window.addEventListener('offline',function(){toast('ইন্টারনেট নেই')});
 window.addEventListener('online',function(){toast('ইন্টারনেট ফিরেছে')});
 var hiddenAt=0;
 document.addEventListener('visibilitychange',function(){
   if(document.hidden){hiddenAt=Date.now()}
-  else if(K&&hiddenAt&&Date.now()-hiddenAt>60000){lock()}
+  else if(K&&hiddenAt&&Date.now()-hiddenAt>(cfg('lbi',false)?0:60000)){lock()}
 });
 setTimeout(function(){$('splash').classList.add('out')},800);
 setTimeout(function(){var x=$('splash');if(x)x.remove()},1300);
